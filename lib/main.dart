@@ -1,36 +1,52 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:myapp/utils.dart';
-// import 'package:myapp/page-1/loading-screen.dart';
-// import 'package:myapp/page-1/main.dart';
-import 'package:myapp/page-1/welcome.dart';
-// import 'package:myapp/page-1/register.dart';
-// import 'package:myapp/page-1/welcome-2.dart';
-// import 'package:myapp/page-1/add.dart';
-// import 'package:myapp/page-1/stat.dart';
-// import 'package:myapp/page-1/lk.dart';
-// import 'package:myapp/page-1/edit-profile.dart';
+import 'package:flutter/services.dart';
+import 'package:tracker_app_beta/presentation/calendar_main_screen/calendar_main_screen.dart';
+import 'package:tracker_app_beta/presentation/welcome_screen/welcome_screen.dart';
+import 'package:tracker_app_beta/routes/app_routes.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
+Future<void> main() async { 
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+  initializeDateFormatting().then((_) => runApp(MyApp()));
+  runApp(MyApp());
+}
 
-void main() => runApp(MyApp());
+class MainPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    body: StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData){
+          return Calendar();
+        } else {
+          return WelcomeScreen();
+        }
+      },
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
-	@override
-	Widget build(BuildContext context) {
-	return MaterialApp(
-		title: 'Flutter',
-		debugShowCheckedModeBanner: false,
-		scrollBehavior: MyCustomScrollBehavior(),
-		theme: ThemeData(
-		primarySwatch: Colors.blue,
-		),
-		home: Scaffold(
-		body: SingleChildScrollView(
-			child: Scene(),
-		),
-		),
-	);
-	}
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowMaterialGrid: false,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        pageTransitionsTheme: const PageTransitionsTheme(builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        }),
+      ),
+      title: 'tracker_app_beta',
+      initialRoute: AppRoutes.welcomeScreen,
+      routes: AppRoutes.routes,
+    );
+  }
 }
