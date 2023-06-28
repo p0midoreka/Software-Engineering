@@ -50,20 +50,22 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyApuJ5Q99HSlufJSLHbGjIEYeJaK5e-Aac',
-    appId: '1:883056216805:android:840a645571269aea59620c',
-    messagingSenderId: '883056216805',
-    projectId: 'hz-7f9a3',
-    storageBucket: 'hz-7f9a3.appspot.com',
+    apiKey: 'AIzaSyA7T4EGFNtdiCsYLq97S0V3Iso7JcMIgcg',
+    appId: '1:465525405582:android:073b851ce04cc48f0616df',
+    messagingSenderId: '465525405582',
+    projectId: 'tasky-3f0ce',
+    databaseURL: 'https://tasky-3f0ce-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'tasky-3f0ce.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBhaV8LMnwx_vTxf977tPgNiyrX0c0LNjc',
-    appId: '1:883056216805:ios:3b3137ca99c03a6259620c',
-    messagingSenderId: '883056216805',
-    projectId: 'hz-7f9a3',
-    storageBucket: 'hz-7f9a3.appspot.com',
-    iosClientId: '883056216805-f7i4k59vm5f145fgcejjvd756o5gt8ua.apps.googleusercontent.com',
-    iosBundleId: 'com.trackerappbeta.app',
+    apiKey: 'AIzaSyC2CCMexs7UgTy80TLeRrTmfq0N8x8INMI',
+    appId: '1:465525405582:ios:f78c31e667e92b360616df',
+    messagingSenderId: '465525405582',
+    projectId: 'tasky-3f0ce',
+    databaseURL: 'https://tasky-3f0ce-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'tasky-3f0ce.appspot.com',
+    iosClientId: '465525405582-cisv7kidilngcsb858tnvmr9jpf7g9ci.apps.googleusercontent.com',
+    iosBundleId: 'com.example.taskyFlutter',
   );
 }
